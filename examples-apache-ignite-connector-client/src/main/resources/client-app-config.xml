@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- defines a ignite connection and structures -->
+	<bean name="igniteManager"
+		class="com.hawkore.ignite.extensions.api.spring.beans.IgniteConnectionManager">
+
+		<property name="igniteSpringCfgFile" value="ignite/client/ignite-client-config.xml" />
+
+		<!-- cache definitions -->
+		<property name="cacheDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.cache.CacheDefinition">
+					<property name="cacheName" value="CACHE1"></property>
+					<property name="cacheConfig">
+						<bean
+							class="com.hawkore.ignite.extensions.api.spring.beans.config.cache.SimpleCacheConfiguration">
+						</bean>
+					</property>
+				</bean>
+				<bean class="com.hawkore.ignite.extensions.api.spring.beans.config.cache.CacheDefinition">
+					<property name="cacheName" value="CACHE2"></property>
+					<property name="cacheConfig">
+						<bean class="com.hawkore.ignite.extensions.api.spring.beans.config.cache.BeanReferenceCacheConfig">
+							<property name="beanRef" value="_defaultCacheConfig"/>
+						</bean>
+					</property>
+				</bean>				
+			</list>
+		</property>
+
+		<!-- queue definitions -->
+
+		<property name="queueDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.queue.QueueDefinition">
+					<property name="queueName" value="QUEUE1" />
+					<property name="capacity" value="0" />
+					<property name="collectionConfig">
+						<bean
+							class="com.hawkore.ignite.extensions.api.spring.beans.config.common.collection.SimpleCollectionConfiguration">
+						</bean>
+					</property>
+				</bean>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.queue.QueueDefinition">
+					<property name="queueName" value="QUEUE2" />
+					<property name="capacity" value="0" />
+					<property name="collectionConfig">
+						<bean class="com.hawkore.ignite.extensions.api.spring.beans.config.common.collection.BeanReferenceCollectionConfig">
+							<property name="beanRef" value="_defaultCollectionConfig"/>
+						</bean>
+					</property>
+				</bean>				
+			</list>
+		</property>
+
+		<!-- topic definitions -->
+		<property name="topicDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.topic.TopicDefinition">
+					<property name="topicName" value="TOPIC1" />
+				</bean>
+			</list>
+		</property>
+
+	</bean>
+
+	<!-- to be used on cacheScope operation -->
+	<bean name="aCacheScopeStrategy"
+		class="com.hawkore.ignite.extensions.api.spring.beans.config.cache.scope.CacheScopeStrategy">
+		<property name="manager" ref="igniteManager" />
+		<property name="entryTTL" value="10" />
+		<property name="entryTTLTimeUnit" value="SECONDS" />
+		<property name="expiryPolicy" value="CREATED_EXPIRY_POLICY" />
+		<property name="cacheDef">
+			<bean
+				class="com.hawkore.ignite.extensions.api.spring.beans.config.cache.CacheDefinition">
+				<property name="cacheName" value="A_CACHE_FOR_CACHE_SCOPE_STRATEGY"></property>
+				<property name="cacheConfig">
+					<bean
+						class="com.hawkore.ignite.extensions.api.spring.beans.config.cache.SimpleCacheConfiguration">
+						<!-- IMPORTANT: cache scope strategy requires atomicityMode = TRANSACTIONAL -->
+						<property name="atomicityMode" value="TRANSACTIONAL" />
+						<property name="clientNearCacheEvictionPolicy">
+							<bean class="com.hawkore.ignite.extensions.api.spring.beans.config.cache.eviction.EvictionPolicyCacheConfiguration">
+								<property name="maxSize" value="10"/>
+							</bean>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- The sample services to be auto wired into controllers -->
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.AtomicOperationsService">
+		<property name="connection" ref="igniteManager" />
+	</bean>
+
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.CacheOperationsService">
+		<property name="connection" ref="igniteManager" />
+		<property name="cacheScopeStrategy" ref="aCacheScopeStrategy"/>
+	</bean>
+	
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.CountdownLatchOperationsService">
+		<property name="connection" ref="igniteManager" />
+	</bean>
+
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.FilesystemOperationsService">
+		<property name="connection" ref="igniteManager" />
+	</bean>
+	
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.LockOperationsService">
+		<property name="connection" ref="igniteManager" />
+	</bean>	
+
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.QueryOperationsService">
+		<property name="connection" ref="igniteManager" />
+		<property name="cacheScopeStrategy" ref="aCacheScopeStrategy"/>
+	</bean>
+
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.QueueOperationsService">
+		<property name="connection" ref="igniteManager" />
+	</bean>
+	
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.SchedulerOperationsService">
+		<property name="connection" ref="igniteManager" />
+	</bean>
+	
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.SemaphoreOperationsService">
+		<property name="connection" ref="igniteManager" />
+	</bean>
+	
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.SetOperationsService">
+		<property name="connection" ref="igniteManager" />
+	</bean>
+
+	<bean class="com.hawkore.ignite.connector.examples.services.operations.TopicOperationsService">
+		<property name="connection" ref="igniteManager" />
+	</bean>
+	
+	<bean class="com.hawkore.ignite.connector.examples.services.sources.QueueListenerService">
+		<property name="connection" ref="igniteManager" />
+	</bean>
+	
+	<bean class="com.hawkore.ignite.connector.examples.services.sources.SchedulerSourceService">
+		<property name="connection" ref="igniteManager" />
+	</bean>	
+	
+	<bean class="com.hawkore.ignite.connector.examples.services.sources.TopicListenerService">
+		<property name="connection" ref="igniteManager" />
+	</bean>			
+</beans>

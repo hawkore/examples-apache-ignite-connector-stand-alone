@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.hawkore.ignite.connector.samples</groupId>
+	<artifactId>examples-apache-ignite-connector-client</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>examples-apache-ignite-connector-client</name>
+	<description>Samples for Apache Ignite Connector stand-alone</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.1.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<!-- Apache Ignite 2.7.0 with Hawkore's advanced indexing -->
+		<ignite.version>2.7.0-hk</ignite.version>
+		<!-- hk-ignite-connector stand-alone version -->
+		<hawkore.ignite.connector>2.6.0</hawkore.ignite.connector>
+	</properties>
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>com.hawkore.ignite.extensions</groupId>
+			<artifactId>hk-ignite-connector</artifactId>
+			<version>${hawkore.ignite.connector}</version>
+		</dependency>
+
+		<!-- Apache Ignite dependencies -->
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-core</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-spring</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-slf4j</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-log4j2</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+
+		<!-- Hawkore's Apache ignite advanced indexing dependencies -->
+		<dependency>
+			<groupId>com.hawkore.libs.ignite</groupId>
+			<artifactId>hk-ignite-tools</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hawkore.libs.ignite</groupId>
+			<artifactId>hk-ignite-geospatial</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hawkore.libs.ignite</groupId>
+			<artifactId>hk-ignite-indexing</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hawkore.libs.ignite</groupId>
+			<artifactId>hk-ignite-plugin-h2gis</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+	
+		<!-- Spring dependencies -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-jersey</artifactId>
+	        <exclusions>
+	        	<exclusion>
+	        		<artifactId>log4j-to-slf4j</artifactId>
+	        		<groupId>org.apache.logging.log4j</groupId>
+	        	</exclusion>
+	        </exclusions>
+	    </dependency>
+	    
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+	        	<exclusion>
+	        		<artifactId>log4j-to-slf4j</artifactId>
+	        		<groupId>org.apache.logging.log4j</groupId>
+	        	</exclusion>
+	        </exclusions>
+		</dependency>	    
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<repositories>
+		<repository>
+		    <id>Hawkore Repository</id>
+		    <url>https://repository.hawkore.com/maven2/</url>
+		</repository>
+	</repositories>
+
+
+</project>
