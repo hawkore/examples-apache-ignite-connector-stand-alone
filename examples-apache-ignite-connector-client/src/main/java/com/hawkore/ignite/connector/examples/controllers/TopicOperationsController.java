@@ -48,7 +48,7 @@ public class TopicOperationsController {
     @POST
     @Path("/publish")
     @Produces("text/plain")
-    public Response searchPois(@QueryParam("message") String message) {
+    public Response sendTopicMessage(@QueryParam("message") String message) {
 
         topicOperationsService.sendTopicMessage(message);
 

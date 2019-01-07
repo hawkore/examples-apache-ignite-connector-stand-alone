@@ -25,6 +25,14 @@
 	        </map>
 	    </property>
 		
+		<property name="fileSystemConfiguration">
+	      <list>
+	        <bean class="org.apache.ignite.configuration.FileSystemConfiguration">
+	          	<property name="name" value="MY_IGFS" />
+	        </bean>
+	      </list>
+	    </property>
+		
   		<!-- Explicitly configure TCP discovery SPI -->
 		  <property name="discoverySpi">
 		    <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
@@ -35,14 +43,6 @@
 				<property name="ipFinder" ref="${ignite.this.node.ipfinder.bean}"/>
 			</bean>
 		  </property> 
-
-	    <property name="fileSystemConfiguration">
-	      <list>
-	        <bean class="org.apache.ignite.configuration.FileSystemConfiguration">
-	          <property name="name" value="igfs" />
-	        </bean>
-	      </list>
-	    </property>
 		  
 		<!-- Durable memory configuration for this Apache Ignite node. The durable memory is a manageable off-heap based memory architecture-->
 		<property name="dataStorageConfiguration">

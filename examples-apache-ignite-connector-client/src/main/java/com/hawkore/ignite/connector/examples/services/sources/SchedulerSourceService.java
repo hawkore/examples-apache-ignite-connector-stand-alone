@@ -53,7 +53,7 @@ public class SchedulerSourceService extends AService {
         final String description = "My cron scheduler 1";
         final boolean activeOnStart = true;
         final boolean concurrencyAllowed = false;
-        final SchedulerConfiguration schedulerStrategy = new CronScheduler().withCronExpression("{2, 5} * * * * *");
+        final SchedulerConfiguration schedulerStrategy = new CronScheduler().withCronExpression("* * * * *");
         final String location = "a location for scheduler 1 within my app";
 
         // define scheduler source

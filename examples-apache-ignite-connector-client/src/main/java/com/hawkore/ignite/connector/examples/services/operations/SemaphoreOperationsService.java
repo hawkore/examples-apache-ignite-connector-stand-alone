@@ -18,12 +18,21 @@ package com.hawkore.ignite.connector.examples.services.operations;
 import com.hawkore.ignite.connector.examples.AService;
 
 /**
+ * 
  * SemaphoreOperationsService 
  *
- * @TODO
- *
- *
+ * @TODO: Implement some samples
+ * 
+ * @author Manuel Núñez (manuel.nunez@hawkore.com)
+ * 
  */
 public class SemaphoreOperationsService extends AService{
-
+    
+//    semaphoreAcquirePermits(String, int, long, TimeUnit, IgniteAbstractConnection)
+//    semaphoreReleasePermits(String, int, IgniteAbstractConnection)
+//    
+//    
+//    
+//    semaphoreDrainPermits(String, IgniteAbstractConnection)
+//    semaphoreResetPermits(String, int, IgniteAbstractConnection)
 }

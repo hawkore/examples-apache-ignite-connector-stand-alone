@@ -18,12 +18,20 @@ package com.hawkore.ignite.connector.examples.services.operations;
 import com.hawkore.ignite.connector.examples.AService;
 
 /**
+ * 
  * CountdownLatchOperationsService 
+ *
+ * @TODO: Implement some samples
  * 
- * @TODO
- * 
+ * @author Manuel Núñez (manuel.nunez@hawkore.com)
  *
  */
 public class CountdownLatchOperationsService extends AService{
 
+//    countdownlatchCountDown(String, int)
+//    
+//    countdownlatchAwait(String, long, TimeUnit)
+    
+
+    
 }

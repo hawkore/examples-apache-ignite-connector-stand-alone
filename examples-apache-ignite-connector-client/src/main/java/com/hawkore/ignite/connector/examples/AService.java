@@ -26,23 +26,52 @@ import com.hawkore.ignite.extensions.api.spring.beans.IgniteConnectionManager;
  * 
  */
 public abstract class AService implements InitializingBean {
-   
+
     /** */
     public static final String CACHE1 = "CACHE1";
-    
+
     /** */
     public static final String CACHE2 = "CACHE2";
-    
+
     /** */
     public static final String QUEUE1 = "QUEUE1";
-    
+
     /** */
     public static final String QUEUE2 = "QUEUE2";
-    
+
     /** */
     public static final String TOPIC1 = "TOPIC1";
-    
-    
+
+    /** */
+    public static final String SET1 = "SET1";
+
+    /** */
+    public static final String ATOMIC_LONG_1 = "ATOMIC_LONG_1";
+
+    /** */
+    public static final String ATOMIC_REFERENCE_1 = "ATOMIC_REFERENCE_1";
+
+    /** */
+    public static final String ATOMIC_SEQUENCE_1 = "ATOMIC_SEQUENCE_1";
+
+    /** */
+    public static final String ATOMIC_STAMPED_1 = "ATOMIC_STAMPED_1";
+
+    /** */
+    public static final String LOCK_1 = "LOCK_1";
+
+    /** */
+    public static final String SEM_1 = "SEM_1";
+
+    /** */
+    public static final String COUNT_DOWN_1 = "COUNT_DOWN_1";
+
+    /**
+     * as defined on ignite-client-config.xml on client node and
+     * ignite-server-alone-config.xml on server node
+     */
+    public static final String FILE_SYSTEM_NAME = "MY_IGFS";
+
     protected IgniteConnectionManager connection;
 
     /**
@@ -60,11 +89,14 @@ public abstract class AService implements InitializingBean {
         return connection;
     }
 
-    /* (non-Javadoc)
-     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */
     @Override
     public void afterPropertiesSet() throws Exception {
-        
+
     }
 }

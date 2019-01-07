@@ -15,14 +15,58 @@
  */
 package com.hawkore.ignite.connector.examples.services.operations;
 
+import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
+
+import com.hawkore.ignite.cache.utils.IgniteUtil;
 import com.hawkore.ignite.connector.examples.AService;
+import com.hawkore.ignite.extensions.internal.operations.LockIgniteOperationsSvc;
 
 /**
- * LockOperationsService 
+ * 
+ * LockOperationsService
  *
- * @TODO
+ * @author Manuel Núñez (manuel.nunez@hawkore.com)
+ *
  *
  */
-public class LockOperationsService extends AService{
+public class LockOperationsService extends AService {
+
+    /**
+     * Try execute a task within a distributed lock
+     * 
+     * @param name
+     *            the lock to use
+     * @param timeout
+     *            timeout
+     * @param timeoutUnit
+     *            the timeout unit
+     * @return the lock response (Exception if lock was not acquired or process
+     *         execution within lock scope otherwise)
+     */
+    public Serializable lockScope(String name, long timeout, TimeUnit timeoutUnit) {
+
+        Serializable response = null;
+
+        try {
+            response = (Serializable) LockIgniteOperationsSvc.lockScope(name, timeout, timeoutUnit, connection, () -> {
+                // here goes your implementation within lock scope
+                
+                // a long process simulation
+                IgniteUtil.sleepSafe(10000);
+                
+                return "{\"msg\":\"process executed with lock acquired!!\"}";
+            });
+
+            if (response instanceof Exception) {
+                throw (Exception) response;
+            }
+
+        } catch (Exception e) {
+            return String.format("{\"msg\":\"%s\"}", e.getMessage());
+        }
+
+        return response;
+    }
 
 }

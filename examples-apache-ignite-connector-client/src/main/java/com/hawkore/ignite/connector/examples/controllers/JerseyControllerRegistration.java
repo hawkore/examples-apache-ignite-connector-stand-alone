@@ -38,5 +38,8 @@ public class JerseyControllerRegistration extends ResourceConfig
         register(QueueOperationsController.class);
         register(QueryOperationsController.class);
         register(TopicOperationsController.class);
+        register(SchedulerOperationsController.class);
+        register(LockOperationsController.class);
+        register(FilesystemOperationsController.class);
     }
 }

@@ -73,6 +73,113 @@
 			</list>
 		</property>
 
+		<!-- IgniteSet definitions -->
+		<property name="setDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.set.SetDefinition">
+					<property name="setName" value="SET1" />
+					<property name="collectionConfig">
+						<bean
+							class="com.hawkore.ignite.extensions.api.spring.beans.config.common.collection.SimpleCollectionConfiguration">
+						</bean>
+					</property>					
+				</bean>
+			</list>
+		</property>
+		
+		<!-- AtomicLong definitions -->
+		<property name="atomicLongDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.atomic.AtomicLongDefinition">
+					<property name="atomicName" value="ATOMIC_LONG_1" />
+					<property name="atomicConfig">
+						<bean
+							class="com.hawkore.ignite.extensions.api.spring.beans.config.atomic.SimpleAtomicConfiguration">
+						</bean>
+					</property>					
+				</bean>
+			</list>
+		</property>
+
+		<!-- AtomicReference definitions -->
+		<property name="atomicReferenceDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.atomic.AtomicReferenceDefinition">
+					<property name="atomicName" value="ATOMIC_REFERENCE_1" />
+					<property name="atomicConfig">
+						<bean
+							class="com.hawkore.ignite.extensions.api.spring.beans.config.atomic.SimpleAtomicConfiguration">
+						</bean>
+					</property>					
+				</bean>
+			</list>
+		</property>
+
+		<!-- AtomicSequence definitions -->
+		<property name="atomicSequenceDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.atomic.AtomicSequenceDefinition">
+					<property name="atomicName" value="ATOMIC_SEQUENCE_1" />
+					<property name="atomicConfig">
+						<bean
+							class="com.hawkore.ignite.extensions.api.spring.beans.config.atomic.SimpleAtomicConfiguration">
+						</bean>
+					</property>					
+				</bean>
+			</list>
+		</property>
+
+		<!-- AtomicStamped definitions -->
+		<property name="atomicStampedDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.atomic.AtomicStampedDefinition">
+					<property name="atomicName" value="ATOMIC_STAMPED_1" />
+					<property name="atomicConfig">
+						<bean
+							class="com.hawkore.ignite.extensions.api.spring.beans.config.atomic.SimpleAtomicConfiguration">
+						</bean>
+					</property>					
+				</bean>
+			</list>
+		</property>
+
+		<!-- Lock definitions -->
+		<property name="lockDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.lock.LockDefinition">
+					<property name="lockName" value="LOCK_1" />					
+				</bean>
+			</list>
+		</property>
+
+		<!-- Semaphore definitions -->
+		<property name="semaphoreDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.semaphore.SemaphoreDefinition">
+					<property name="semaphoreName" value="SEM_1" />
+					<property name="count" value="1" />						
+				</bean>
+			</list>
+		</property>
+
+		<!-- Countdown latch definitions -->
+		<property name="countdownlatchDefs">
+			<list>
+				<bean
+					class="com.hawkore.ignite.extensions.api.spring.beans.config.countdownlatch.CountdownLatchDefinition">
+					<property name="countdownLatchName" value="COUNT_DOWN_1" />
+					<property name="count" value="10" />						
+				</bean>
+			</list>
+		</property>
+
 	</bean>
 
 	<!-- to be used on cacheScope operation -->

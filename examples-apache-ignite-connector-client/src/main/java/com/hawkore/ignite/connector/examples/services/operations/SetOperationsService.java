@@ -18,11 +18,19 @@ package com.hawkore.ignite.connector.examples.services.operations;
 import com.hawkore.ignite.connector.examples.AService;
 
 /**
+ * 
  * SetOperationsService 
+ * 
+ * @TODO: Implement some samples
  *
- * @TODO
+ * @author Manuel Núñez (manuel.nunez@hawkore.com)
+ *
  *
  */
 public class SetOperationsService extends AService{
-
+//    setAdd(String, Object, boolean, IgniteAbstractConnection)
+//    setRemove(String, Object, boolean, IgniteAbstractConnection)
+//    setContains(String, Object, boolean, IgniteAbstractConnection)
+//    setIterator(String, boolean, IgniteAbstractConnection)
+//    setClear(String, IgniteAbstractConnection)
 }

@@ -44,4 +44,31 @@ mvn spring-boot:run -DnodeName=client2 -Dserver.port=8081
 	- Some **topic** operations (you will see on client terminals traces):
 		- publish message to topic subscribers: POST http://localhost:8080/topics/publish?message=aMessage
 
+	- Some **scheduler** operations:
+		- scheduled tasks: GET http://localhost:8080/scheduler/tasks
+		- scheduled tasks executions: GET http://localhost:8080/scheduler/executions?id=df042632-3d04-3bea-bc9d-06ad607b92b9
+		- stop scheduler (use id from scheduled tasks list): POST http://localhost:8080/scheduler/stop?id=df042632-3d04-3bea-bc9d-06ad607b92b9
+		- start scheduler (use id from scheduled tasks list): POST http://localhost:8080/scheduler/start?id=df042632-3d04-3bea-bc9d-06ad607b92b9
+		- run scheduled task - one shot (use id from scheduled tasks list): POST http://localhost:8080/scheduler/run?id=df042632-3d04-3bea-bc9d-06ad607b92b9
+		- re-schedule (use id from scheduled tasks list) (Fixed frequency dispatch every second, uses default values): POST http://localhost:8080/scheduler/reschedule?id=df042632-3d04-3bea-bc9d-06ad607b92b9
+		- re-schedule (use id from scheduled tasks list) (CRON expression dispatch every minute): POST http://localhost:8080/scheduler/reschedule?id=df042632-3d04-3bea-bc9d-06ad607b92b9&cron=* * * * *
+
+	- Some **lock** operations:	
+		- 1. run task within lock scope (simulated task execution duration 10 seconds): GET http://localhost:8080/locks/runTask?timeout=1&timeUnit=SECONDS					
+		- 2. run task with no wait again before first task execution finish: GET http://localhost:8080/locks/runTask?timeout=0&timeUnit=SECONDS	
+		- 3. run task increasing timeout to 12 seconds before first task execution finish: GET http://localhost:8080/locks/runTask?timeout=12&timeUnit=SECONDS
+		- 4. run task waiting until lock is acquired before first task execution finish: GET http://localhost:8080/locks/runTask?timeout=-1&timeUnit=SECONDS
+
+	- Some **filesystem** operations:	
+		- Create file: POST http://localhost:8080/filesystem/create?path=/sample.txt&content=hello world!
+		- Create directories: POST http://localhost:8080/filesystem/mkdirs?path=/mydir/mysubdir
+		- Download file: GET http://localhost:8080/filesystem/download?path=/sample.txt
+		- File/directory size (bytes): GET http://localhost:8080/filesystem/size?path=/sample.txt
+		- List root directory files: GET http://localhost:8080/filesystem/ls?path=/
+		- File/directory summary: GET http://localhost:8080/filesystem/summary?path=/
+		- Delete file: DELETE http://localhost:8080/filesystem/rm?path=/sample.txt
+		- Delete directories: DELETE http://localhost:8080/filesystem/rm?path=/mydir
+
+		
+				
 Visit [Hawkore's home page](https://www.hawkore.com).
