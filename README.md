@@ -2,6 +2,7 @@
 
 Hi! This is Hawkore's stand-alone connector for Apache Ignite sample project.
 
+![connector](assets/connector.png)
 
 - Requirements
 
