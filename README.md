@@ -17,12 +17,13 @@ Hi! This is Hawkore's stand-alone connector for Apache Ignite sample project.
 	-  Change to directory: `cd examples-apache-ignite-connector-stand-alone`
 
 
-# Content
+## Content
 
 * `ignite-server-node-test`: Start server nodes for testing Hawkore's Apache Ignite connector stand-alone. See [README.md](ignite-server-node-test/README.md) for more info.
 
 * `examples-apache-ignite-connector-client`: Contains sample source code for [Hawkore's Apache Ignite connector stand-alone
 ](https://docs.hawkore.com/private/apache-ignite-connector-standalone/) documentation. See [README.md](examples-apache-ignite-connector-client/README.md) for more info.
 
+# Other resources
 
-Visit [Hawkore's home page](https://www.hawkore.com).
+Sign up at [www.hawkore.com](https://www.hawkore.com) to access full documentation.
