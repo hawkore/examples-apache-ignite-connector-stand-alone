@@ -10,11 +10,11 @@ This maven project contains sample source code for [Hawkore's Apache Ignite conn
 - 1. Start as many client nodes as you want (change `nodeName` and `server.port` per client you start). Open a terminal per client and run:
 
 ```
-mvn spring-boot:run -DnodeName=client1 -Dserver.port=8080
+mvn spring-boot:run -DnodeName=client1 -Dserver.port=8080 -Dfile.encoding=UTF-8
 ```
 
 ```
-mvn spring-boot:run -DnodeName=client2 -Dserver.port=8081
+mvn spring-boot:run -DnodeName=client2 -Dserver.port=8081 -Dfile.encoding=UTF-8
 ```
 
 - 2. Test operations with [Postman](https://www.getpostman.com/apps). Open Postman and send below requests (view code for more samples), change port to any started client's one:
