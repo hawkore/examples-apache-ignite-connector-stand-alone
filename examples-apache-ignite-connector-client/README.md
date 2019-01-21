@@ -51,7 +51,7 @@ mvn spring-boot:run -DnodeName=client2 -Dserver.port=8081 -Dfile.encoding=UTF-8
 		- start scheduler (use id from scheduled tasks list): POST http://localhost:8080/scheduler/start?id=df042632-3d04-3bea-bc9d-06ad607b92b9
 		- run scheduled task - one shot (use id from scheduled tasks list): POST http://localhost:8080/scheduler/run?id=df042632-3d04-3bea-bc9d-06ad607b92b9
 		- re-schedule (use id from scheduled tasks list) (Fixed frequency dispatch every second, uses default values): POST http://localhost:8080/scheduler/reschedule?id=df042632-3d04-3bea-bc9d-06ad607b92b9
-		- re-schedule (use id from scheduled tasks list) (CRON expression dispatch every minute): POST http://localhost:8080/scheduler/reschedule?id=df042632-3d04-3bea-bc9d-06ad607b92b9&cron=*%20*%20*%20*%20*
+		- re-schedule (use id from scheduled tasks list) (CRON expression dispatch every minute): POST [http://localhost:8080/scheduler/reschedule?id=df042632-3d04-3bea-bc9d-06ad607b92b9&cron=* * * * *](http://localhost:8080/scheduler/reschedule?id=df042632-3d04-3bea-bc9d-06ad607b92b9&cron=*%20*%20*%20*%20*)
 
 	- Some **lock** operations:	
 		- 1. run task within lock scope (simulated task execution duration 10 seconds): GET http://localhost:8080/locks/runTask?timeout=1&timeUnit=SECONDS					
@@ -60,7 +60,7 @@ mvn spring-boot:run -DnodeName=client2 -Dserver.port=8081 -Dfile.encoding=UTF-8
 		- 4. run task waiting until lock is acquired before first task execution finish: GET http://localhost:8080/locks/runTask?timeout=-1&timeUnit=SECONDS
 
 	- Some **filesystem** operations:	
-		- Create file: POST http://localhost:8080/filesystem/create?path=/sample.txt&content=hello%20world!
+		- Create file: POST [http://localhost:8080/filesystem/create?path=/sample.txt&content=hello world!](http://localhost:8080/filesystem/create?path=/sample.txt&content=hello%20world!)
 		- Create directories: POST http://localhost:8080/filesystem/mkdirs?path=/mydir/mysubdir
 		- Download file: GET http://localhost:8080/filesystem/download?path=/sample.txt
 		- File/directory size (bytes): GET http://localhost:8080/filesystem/size?path=/sample.txt
