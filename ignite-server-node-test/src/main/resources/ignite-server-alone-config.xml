@@ -41,6 +41,7 @@
 				<!-- Changing local port range. This is an optional action. -->
 				<property name="localPortRange" value="${ignite.this.node.ipfinder.portrange}"/>
 				<property name="ipFinder" ref="${ignite.this.node.ipfinder.bean}"/>
+				<property name="localAddress" value="127.0.0.1" />
 			</bean>
 		  </property> 
 		  
