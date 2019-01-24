@@ -57,7 +57,6 @@ public class LockOperationsController {
     @Produces("application/json")
     public Response tryLockExecution(@QueryParam("timeout") @DefaultValue("1") long timeout,
         @QueryParam("timeoutUnit") @DefaultValue("SECONDS") TimeUnit timeoutUnit) {
-        lockOperationsService.lockScope(AService.LOCK_1, timeout, timeoutUnit);
         return Response
             .status(200).entity(lockOperationsService.lockScope(AService.LOCK_1, timeout, timeoutUnit)).build();
     }
