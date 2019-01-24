@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.hawkore.ignite.connector.examples.AService;
-import com.hawkore.ignite.extensions.api.wrappers.IgfsFileSupplier;
-import com.hawkore.ignite.extensions.api.wrappers.IgfsPathSummarySupplier;
+import com.hawkore.ignite.extensions.api.wrappers.IgfsFileWrapper;
+import com.hawkore.ignite.extensions.api.wrappers.IgfsPathSummaryWrapper;
 import com.hawkore.ignite.extensions.internal.operations.FileSystemIgniteOperationsSvc;
 
 /**
@@ -81,7 +81,7 @@ public class FilesystemOperationsService extends AService {
      *            Path to list files under.
      * @return List of paths under the specified path.
      */
-    public List<IgfsFileSupplier> filesystemListFiles(String path) {
+    public List<IgfsFileWrapper> filesystemListFiles(String path) {
 
         final String fileSystem = AService.FILE_SYSTEM_NAME;
 
@@ -110,7 +110,7 @@ public class FilesystemOperationsService extends AService {
      *            Path to get information for.
      * @return Summary object.
      */
-    public IgfsPathSummarySupplier filesystemSummary(String path) {
+    public IgfsPathSummaryWrapper filesystemSummary(String path) {
         final String fileSystem = AService.FILE_SYSTEM_NAME;
         return FileSystemIgniteOperationsSvc.filesystemSummary(fileSystem, path, connection);
     }
