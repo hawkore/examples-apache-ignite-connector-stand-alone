@@ -1,6 +1,9 @@
-# Hawkore's stand-alone connector for Apache Ignite - samples project
+# Hawkore's stand-alone connector for Apache Ignite
 
-Hi! This is Hawkore's stand-alone connector for Apache Ignite sample project.
+Hi! This is a sample project to test Hawkore's stand-alone connector for Apache Ignite.
+
+"Apache Ignite(TM) is a memory-centric distributed database, caching, and processing platform for
+transactional, analytical, and streaming workloads, delivering in-memory speeds at petabyte scale."
 
 ![connector](assets/connector.png)
 
@@ -19,7 +22,7 @@ Hi! This is Hawkore's stand-alone connector for Apache Ignite sample project.
 
 ## Content
 
-* `ignite-server-node-test`: Start server nodes for testing Hawkore's Apache Ignite connector stand-alone. See [README.md](ignite-server-node-test/README.md) for more info.
+* `ignite-server-node-test`: Server nodes to test Hawkore's Apache Ignite connector stand-alone. See [README.md](ignite-server-node-test/README.md) for more info.
 
 * `examples-apache-ignite-connector-client`: Contains sample source code for [Hawkore's Apache Ignite connector stand-alone
 ](https://docs.hawkore.com/private/apache-ignite-connector-standalone/) documentation. See [README.md](examples-apache-ignite-connector-client/README.md) for more info.
