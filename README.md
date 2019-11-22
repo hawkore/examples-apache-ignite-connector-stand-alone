@@ -1,9 +1,7 @@
 # Hawkore's stand-alone connector for Apache Ignite
 
-Hi! This is a sample project to test Hawkore's stand-alone connector for Apache Ignite.
-
-"Apache Ignite(TM) is a memory-centric distributed database, caching, and processing platform for
-transactional, analytical, and streaming workloads, delivering in-memory speeds at petabyte scale."
+_[Apache Ignite(TM)](https://ignite.apache.org) is a memory-centric distributed database, caching, and processing platform for
+transactional, analytical, and streaming workloads, delivering in-memory speeds at petabyte scale._
 
 ![connector](assets/connector.png)
 
