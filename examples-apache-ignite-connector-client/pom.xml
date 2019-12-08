@@ -24,13 +24,13 @@
 		<java.version>1.8</java.version>
 		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
 		<!-- Apache Ignite 2.7.0 with Hawkore's advanced indexing -->
-		<ignite.version>2.7.0-hk</ignite.version>
+		<ignite.version>2.7.3-hk</ignite.version>
 		<!-- hk-ignite-connector stand-alone version -->
 		<hawkore.ignite.connector>2.6.0</hawkore.ignite.connector>
 	</properties>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>com.hawkore.ignite.extensions</groupId>
 			<artifactId>hk-ignite-connector</artifactId>
@@ -86,7 +86,7 @@
 			<artifactId>hk-ignite-plugin-h2gis</artifactId>
 			<version>${ignite.version}</version>
 		</dependency>
-	
+
 		<!-- Spring dependencies -->
 	    <dependency>
 	        <groupId>org.springframework.boot</groupId>
@@ -98,7 +98,7 @@
 	        	</exclusion>
 	        </exclusions>
 	    </dependency>
-	    
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -113,7 +113,7 @@
 					<groupId>ch.qos.logback</groupId>
 				</exclusion>
 	        </exclusions>
-		</dependency>	    
+		</dependency>
 	</dependencies>
 
 	<build>
