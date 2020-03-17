@@ -1,0 +1,1032 @@
+{
+	"info": {
+		"_postman_id": "f23ef8e0-7279-435f-842a-18fdfd48e33d",
+		"name": "Apache Ignite Connector - examples test suite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DATA INGESTION",
+			"item": [
+				{
+					"name": "Data ingestion into CACHE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/caches/ingestPois?cc=ES&count=10000&initialId=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"caches",
+								"ingestPois"
+							],
+							"query": [
+								{
+									"key": "cc",
+									"value": "ES"
+								},
+								{
+									"key": "count",
+									"value": "10000"
+								},
+								{
+									"key": "initialId",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Data ingestion into QUEUE to CACHE2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/queues/ingestEntities?count=10000&initialId=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"queues",
+								"ingestEntities"
+							],
+							"query": [
+								{
+									"key": "count",
+									"value": "10000"
+								},
+								{
+									"key": "initialId",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CACHE",
+			"item": [
+				{
+					"name": "Put entry",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/caches/put?key=1&value=theValue",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"caches",
+								"put"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "1"
+								},
+								{
+									"key": "value",
+									"value": "theValue"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get entry",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/caches/get?key=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"caches",
+								"get"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete entry",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/caches/del?key=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"caches",
+								"del"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cache size",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/caches/size?cache=CACHE2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"caches",
+								"size"
+							],
+							"query": [
+								{
+									"key": "cache",
+									"value": "CACHE2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear cache",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/caches/clear?cache=CACHE2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"caches",
+								"clear"
+							],
+							"query": [
+								{
+									"key": "cache",
+									"value": "CACHE2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "QUERY",
+			"item": [
+				{
+					"name": "SQL query -  Get poi by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SQL query -  Delete poi by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/queries/pois/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"queries",
+								"pois",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SQL query -  Search pois by geo search (Advanced Lucene SqlQuery)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/queries/pois/sqlGeoSearch?radius=20km&limit=30&lang=es",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"queries",
+								"pois",
+								"sqlGeoSearch"
+							],
+							"query": [
+								{
+									"key": "radius",
+									"value": "20km"
+								},
+								{
+									"key": "limit",
+									"value": "30"
+								},
+								{
+									"key": "lang",
+									"value": "es"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SQL query -  Search pois by text (SqlQuery)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/queries/pois/sqlSearch?query=airport&limit=30&lang=es",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"queries",
+								"pois",
+								"sqlSearch"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "airport"
+								},
+								{
+									"key": "limit",
+									"value": "30"
+								},
+								{
+									"key": "lang",
+									"value": "es"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SQL query -  Search pois by text (TextQuery)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/queries/pois/textSearch?query=airport&limit=30&lang=en",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"queries",
+								"pois",
+								"textSearch"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "airport"
+								},
+								{
+									"key": "limit",
+									"value": "30"
+								},
+								{
+									"key": "lang",
+									"value": "en"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "QUEUE",
+			"item": [
+				{
+					"name": "Publish message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/queues/publish?message=aMessage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"queues",
+								"publish"
+							],
+							"query": [
+								{
+									"key": "message",
+									"value": "aMessage"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Publish-consume message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/queues/publishConsume?message=aMessage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"queues",
+								"publishConsume"
+							],
+							"query": [
+								{
+									"key": "message",
+									"value": "aMessage"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TOPIC",
+			"item": [
+				{
+					"name": "Broadcast message to topic subscribers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/topics/publish?message=aMessage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"topics",
+								"publish"
+							],
+							"query": [
+								{
+									"key": "message",
+									"value": "aMessage"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "SHEDULER",
+			"item": [
+				{
+					"name": "Scheduled tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/scheduler/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"scheduler",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scheduled tasks executions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/scheduler/executions?id=df042632-3d04-3bea-bc9d-06ad607b92b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"scheduler",
+								"executions"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "df042632-3d04-3bea-bc9d-06ad607b92b9"
+								}
+							]
+						},
+						"description": "Use id parameter returned by scheduled tasks list"
+					},
+					"response": []
+				},
+				{
+					"name": " Stop scheduler",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/scheduler/stop?id=df042632-3d04-3bea-bc9d-06ad607b92b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"scheduler",
+								"stop"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "df042632-3d04-3bea-bc9d-06ad607b92b9"
+								}
+							]
+						},
+						"description": "Use id parameter returned by scheduled tasks list"
+					},
+					"response": []
+				},
+				{
+					"name": "Start scheduler",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/scheduler/start?id=df042632-3d04-3bea-bc9d-06ad607b92b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"scheduler",
+								"start"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "df042632-3d04-3bea-bc9d-06ad607b92b9"
+								}
+							]
+						},
+						"description": "Use id parameter returned by scheduled tasks list"
+					},
+					"response": []
+				},
+				{
+					"name": "Run scheduled task - one shot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/scheduler/run?id=df042632-3d04-3bea-bc9d-06ad607b92b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"scheduler",
+								"run"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "df042632-3d04-3bea-bc9d-06ad607b92b9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Re-schedule - Fixed frequency",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/scheduler/reschedule?id=df042632-3d04-3bea-bc9d-06ad607b92b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"scheduler",
+								"reschedule"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "df042632-3d04-3bea-bc9d-06ad607b92b9"
+								}
+							]
+						},
+						"description": "Dispatched every second, using default values\n\nUse id parameter returned by scheduled tasks list"
+					},
+					"response": []
+				},
+				{
+					"name": "Re-schedule - CRON expression",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/scheduler/reschedule?id=df042632-3d04-3bea-bc9d-06ad607b92b9&cron=* * * * *",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"scheduler",
+								"reschedule"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "df042632-3d04-3bea-bc9d-06ad607b92b9"
+								},
+								{
+									"key": "cron",
+									"value": "* * * * *"
+								}
+							]
+						},
+						"description": "Dispatch task using provided CRON expression\n\nUse id parameter returned by scheduled tasks list"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "LOCK (simulated long-run task - waits 5 seconds)",
+			"item": [
+				{
+					"name": "Run task within lock scope with 1 second timeout to be adquired",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/locks/runTask?timeout=1&timeUnit=SECONDS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"locks",
+								"runTask"
+							],
+							"query": [
+								{
+									"key": "timeout",
+									"value": "1"
+								},
+								{
+									"key": "timeUnit",
+									"value": "SECONDS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run task within lock scope with no wait",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/locks/runTask?timeout=0&timeUnit=SECONDS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"locks",
+								"runTask"
+							],
+							"query": [
+								{
+									"key": "timeout",
+									"value": "0"
+								},
+								{
+									"key": "timeUnit",
+									"value": "SECONDS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run task within lock scope with 8 seconds timeout to be adquired",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/locks/runTask?timeout=8&timeUnit=SECONDS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"locks",
+								"runTask"
+							],
+							"query": [
+								{
+									"key": "timeout",
+									"value": "8"
+								},
+								{
+									"key": "timeUnit",
+									"value": "SECONDS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run task within lock scope waiting until lock is acquired",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/locks/runTask?timeout=-1&timeUnit=SECONDS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"locks",
+								"runTask"
+							],
+							"query": [
+								{
+									"key": "timeout",
+									"value": "-1"
+								},
+								{
+									"key": "timeUnit",
+									"value": "SECONDS"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3f6b8e45-1dec-4e63-b188-85f8149d03a6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "cc4f8a93-1faa-4a52-8ace-4d83a908c18a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "FILE SYSTEM",
+			"item": [
+				{
+					"name": "Create file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filesystem/create?path=/sample.txt&content=hello world!",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filesystem",
+								"create"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "/sample.txt"
+								},
+								{
+									"key": "content",
+									"value": "hello world!"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create directories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filesystem/mkdirs?path=/mydir/mysubdir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filesystem",
+								"mkdirs"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "/mydir/mysubdir"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download file",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filesystem/download?path=/sample.txt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filesystem",
+								"download"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "/sample.txt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File/directory size (bytes)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filesystem/size?path=/sample.txt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filesystem",
+								"size"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "/sample.txt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List root directory files",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filesystem/ls?path=/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filesystem",
+								"ls"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "/"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File/directory summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filesystem/summary?path=/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filesystem",
+								"summary"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "/"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete file",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filesystem/rm?path=/sample.txt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filesystem",
+								"rm"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "/sample.txt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete directories",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/filesystem/rm?path=/mydir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filesystem",
+								"rm"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "/mydir"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0db5327d-2738-4c00-a2c1-4a204253d820",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1d47e613-52ec-46fd-bd64-740a63982ea3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
