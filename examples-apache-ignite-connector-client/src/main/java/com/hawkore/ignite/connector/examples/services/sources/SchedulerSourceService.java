@@ -22,9 +22,9 @@ import com.hawkore.ignite.extensions.internal.sources.scheduler.IgniteSchedulerS
 
 /**
  * SchedulerSourceService.
- * 
+ *
  * <p>
- * 
+ *
  * Starts a scheduler source that will dispatch task's execution at scheduled
  * time
  *
@@ -36,7 +36,7 @@ public class SchedulerSourceService extends AService {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */
@@ -46,10 +46,10 @@ public class SchedulerSourceService extends AService {
     }
 
     private void startSchedulerSource() {
-        
+
         // unique scheduler ID within this app instance
         final String uniqueSchedulerId = "a_scheduler_1";
-        
+
         final String description = "My cron scheduler 1";
         final boolean activeOnStart = true;
         final boolean concurrencyAllowed = false;
@@ -61,7 +61,7 @@ public class SchedulerSourceService extends AService {
             concurrencyAllowed, schedulerStrategy, connection, location);
 
         // schedules task
-        scheduler.doStartScheduler((payload, ctx) -> {
+        scheduler.doStart((payload, ctx) -> {
 
             try {
 

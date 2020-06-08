@@ -23,20 +23,18 @@ import com.hawkore.ignite.extensions.internal.sources.topic.IgniteTopicMessaging
 
 /**
  * TopicListenerService.
- * 
+ *
  * <p>
- * 
+ * <p>
  * Starts a topic listener that will process received messages
  *
  * @author Manuel Núñez (manuel.nunez@hawkore.com)
- *
- *
  */
 public class TopicListenerService extends AService {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */
@@ -49,10 +47,10 @@ public class TopicListenerService extends AService {
 
         final String subscribeToTopic = TOPIC1;
         final String location = "a location for this topic listener within my app";
-
+        final boolean concurrencyAllowed = false;
         // define a topic source listener
         IgniteTopicMessagingListenerSvc topicListener = new IgniteTopicMessagingListenerSvc(subscribeToTopic, location,
-            connection);
+            concurrencyAllowed, connection);
 
         // start listening (subscribe to TOPIC1)
         topicListener.doStart((payload, ctx) -> {
@@ -61,18 +59,17 @@ public class TopicListenerService extends AService {
                 Serializable value = payload;
 
                 if (value instanceof TopicMessage) {
-                    final TopicMessage command = (TopicMessage) value;
+                    final TopicMessage command = (TopicMessage)value;
                     value = command.getValue();
                 }
                 // here goes your implementation to process received
                 // messages
                 System.out.println("****************************************");
-                System.out.println("***** " + topicListener.getTopic() + " source on "
-                    + topicListener.getLocation() + " received a message: " + value);
+                System.out.println("***** " + topicListener.getTopic() + " source on " + topicListener.getLocation()
+                                       + " received a message: " + value);
                 System.out.println("****************************************");
 
                 return "my topic messsage process finish: " + value;
-
             } catch (final Exception e) {
                 return e;
             }

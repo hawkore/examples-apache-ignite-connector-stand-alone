@@ -41,11 +41,11 @@ public class QueueOperationsService extends AService {
 
     /**
      * Sends a message to a queue listener
-     * 
+     *
      * NOTE: a queue listener for "QUEUE1" is defined in
      * {@link com.hawkore.ignite.connector.examples.services.sources.QueueListenerService}
      * and will receive/process sent messages
-     * 
+     *
      * @param message
      *            the message to send
      */
@@ -53,7 +53,7 @@ public class QueueOperationsService extends AService {
 
         String publishToQueue = QUEUE1;
 
-        QueueIgniteOperationsSvc.queuePublish(message, publishToQueue, 60, TimeUnit.SECONDS,
+        QueueIgniteOperationsSvc.queuePublish(publishToQueue, message, 60, TimeUnit.SECONDS,
             UUID.randomUUID().toString(),
             connection);
     }
@@ -61,29 +61,29 @@ public class QueueOperationsService extends AService {
     /**
      * Sends a message to a queue listener that will process it and will return
      * it back once processed
-     * 
+     *
      * <p>
-     * 
+     *
      * NOTE: a queue listener for "QUEUE1" is defined in
      * {@link com.hawkore.ignite.connector.examples.services.sources.QueueListenerService}
      * and will receive/process sent messages
-     * 
+     *
      * <p>
-     * 
+     *
      * Typical horizontal scaling (clustered application) where message is consume by ONE processor
      * located within an application instance on some node (the first that polls message from queue) and
      * returns processed message to invoker
-     * 
-     * 
+     *
+     *
      * @param message
-     * 
+     *
      * @return processed message
      */
     public Object publishConsumeQueueMessage(Object message) {
 
         String publishToQueue = QUEUE1;
 
-        return QueueIgniteOperationsSvc.queuePublishConsume(message, publishToQueue, 60, TimeUnit.SECONDS,
+        return QueueIgniteOperationsSvc.queuePublishConsume(publishToQueue, message, 60, TimeUnit.SECONDS,
 
             // here message will be received once it was processed on
             // queue listener
@@ -107,16 +107,16 @@ public class QueueOperationsService extends AService {
     }
 
     /**
-     * 
+     *
      * Ingest data and publish to QUEUE2
-     * 
+     *
      * <p>
-     * 
+     *
      * NOTE: a queue listener for "QUEUE2" is defined in
      * {@link com.hawkore.ignite.connector.examples.services.sources.QueueListenerService}
      * and will receive/process sent messages
-     * 
-     * 
+     *
+     *
      * @param numberOfEntities
      *            - number of entities to generate
      * @param initialId

@@ -21,6 +21,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import com.hawkore.ignite.extensions.api.wrappers.IgniteCacheWrapper;
 import javax.cache.expiry.ExpiryPolicy;
 
 import org.apache.ignite.IgniteCache;
@@ -37,16 +38,16 @@ import com.hawkore.ignite.extensions.api.spring.beans.config.cache.scope.CacheSc
 import com.hawkore.ignite.extensions.internal.operations.CacheIgniteOperationsSvc;
 
 /**
- * CacheOperationsService 
+ * CacheOperationsService
  *
  * @author Manuel Núñez (manuel.nunez@hawkore.com)
  *
  */
 public class CacheOperationsService extends AService{
 
-    
+
     private CacheScopeStrategy cacheScopeStrategy;
-    
+
     /**
      * @param cacheScopeStrategy
      *            the cacheScopeStrategy to set
@@ -61,81 +62,80 @@ public class CacheOperationsService extends AService{
     public CacheScopeStrategy getCacheScopeStrategy() {
         return cacheScopeStrategy;
     }
-    
-    
+
+
     /**
      * Put an entry on cache
-     * 
+     *
      * @param key cache key
      * @param value cache value
      * @param expireSeconds expiration in seconds once created
      */
     public void cachePut(Serializable key, Serializable value, int expireSeconds){
-        
+
         final String cacheName = CACHE2;
         final boolean mustSerialize = false;
         final boolean async = false;
-        
+
         // entry expiration
         final int entryTTL = expireSeconds; // 0 disables expiration
         final TimeUnit entryTTLTimeUnit = TimeUnit.SECONDS;
         final ExpiryPolicyType expiryPolicy = ExpiryPolicyType.CREATED_EXPIRY_POLICY;
-        
+
         CacheIgniteOperationsSvc.cachePut(cacheName, key, value, expiryPolicy, entryTTL, entryTTLTimeUnit, mustSerialize, async, connection);
     }
-    
+
     /**
      * Get an entry from cache
-     * 
+     *
      * @param key cache key
-     * 
+     *
      * @return the cache entry
      */
     public Serializable cacheGet(Serializable key){
-        
+
         final String cacheName = CACHE2;
         final boolean mustDeserialize = false;
-        
+
         return CacheIgniteOperationsSvc.cacheGet(cacheName, key, mustDeserialize, connection);
     }
-    
+
     /**
-     * 
+     *
      * @param cacheName
      * @return  cache size
      */
-    @SuppressWarnings("rawtypes")
-    public long cacheSize(String cacheName){       
-        return ((IgniteCache)CacheIgniteOperationsSvc.cacheInstance(cacheName, connection)).sizeLong();
+    public long cacheSize(String cacheName){
+        return ((IgniteCacheWrapper)CacheIgniteOperationsSvc.cacheInstance(cacheName, connection)).getSize();
     }
-    
-    
+
+
     /**
-     * 
+     *
      * @param cacheName
      */
-    public void cacheClear(String cacheName){       
+    public void cacheClear(String cacheName){
          CacheIgniteOperationsSvc.cacheClear(cacheName, connection);
     }
-    
+
     /**
      * Delete an entry from cache and return deleted entry
      * @param key
      * @return if entry was deleted
      */
     public boolean cacheDelete(Serializable key){
-        
+
         final String cacheName = CACHE2;
         final boolean mustDeserialize = false;
-        
+
         return CacheIgniteOperationsSvc.cacheRemove(cacheName, key, mustDeserialize, connection);
     }
-    
-    
+
+
     /**
-     * 
+     *
      * Generate random pois using a cache data provider
-     * 
+     *
      * @param countryCode
      *            - ES, FR or PT
      * @param numberOfPois
@@ -158,7 +158,7 @@ public class CacheOperationsService extends AService{
 
             // thread-safe pois supplier
             PoisProvider poisSupplier = new PoisProvider(numberOfPois, countryCode, initialId);
-            
+
             // thread-safe progress notifier
             IngestionProgressNotifier progressNotifier = new IngestionProgressNotifier() {
 
@@ -168,7 +168,7 @@ public class CacheOperationsService extends AService{
 
                 @Override
                 public synchronized void notify(IngestionResult result) {
-                    
+
                     if (result.isFinished()) {
                         this.result.updateGlobal(this.result.getProcessed() + result.getProcessed(),
                             this.result.getSent() + result.getSent(),
@@ -221,5 +221,5 @@ public class CacheOperationsService extends AService{
 
         }, batchSize, allowOverwrite, autoFlushFreq, serializeBeforePut, numberOfIngesters, async, connection);
     }
-    
+
 }

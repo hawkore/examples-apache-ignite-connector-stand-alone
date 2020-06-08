@@ -15,32 +15,42 @@
  */
 package com.hawkore.ignite.connector.examples;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 
 /**
- * 
- * IgniteConnectorSamplesSpringBootApp 
- * 
+ *
+ * IgniteConnectorSamplesSpringBootApp
+ *
  * <p>
- * 
+ *
  * Sample SpringBoot app to show Hawkore's Apache Ignite connector integration
  *
  * @author Manuel Núñez (manuel.nunez@hawkore.com)
- * 
+ *
  */
 @SpringBootApplication
 @ImportResource("classpath:client-app-config.xml")
 public class IgniteConnectorSamplesSpringBootApp extends SpringBootServletInitializer {
 
+	@Bean
+	public ObjectMapper objectMapper() {
+		ObjectMapper m = new ObjectMapper();
+		m.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		return m;
+	}
+
     /**
-     * 
+     *
      * @param args
      */
 	public static void main(String[] args) {
-        
+
 	    System.setProperty("env", "test");
 
 	    new IgniteConnectorSamplesSpringBootApp().configure(new SpringApplicationBuilder(IgniteConnectorSamplesSpringBootApp.class)).run(args);
